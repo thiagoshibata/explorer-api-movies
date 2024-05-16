@@ -1,9 +1,9 @@
-const  { Router } = require("express")
+const { Router } = require("express")
 
 const routes = Router()
 
-routes.get("/", (request, response) => {
-  response.send("First router")
-})
+const usersRouter = require("./user.routes")
 
-module.exports = routes;
+routes.use("/users", usersRouter)
+
+module.exports = routes
