@@ -9,5 +9,6 @@ userRouter.post("/", usersController.create)
 userRouter.get("/:id", usersController.show)
 userRouter.get("/", usersController.index)
 userRouter.put("/:id", usersController.update)
+userRouter.delete("/:id", usersController.delete)
 
 module.exports = userRouter
