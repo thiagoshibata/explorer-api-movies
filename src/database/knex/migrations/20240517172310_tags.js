@@ -5,7 +5,7 @@ exports.up = (knex) =>
     table
       .integer("movie_note_id")
       .references("id")
-      .inTable("movies_notes")
+      .inTable("movie_notes")
       .onDelete("CASCADE")
     table.integer("user_id").references("id").inTable("users")
   })
