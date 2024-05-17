@@ -76,14 +76,14 @@ class UsersController {
       })
       .where({ id })
 
-    return res.json(user)
+    return res.status(200).json(user)
   }
   async delete(req, res) {
     const { id } = req.params
 
     await knex("users").where({ id }).delete()
 
-    return res.json()
+    return res.status(200).json()
   }
 }
 
