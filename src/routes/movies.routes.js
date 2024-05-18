@@ -6,5 +6,7 @@ const movieRouter = Router()
 const moviesController = new MoviesController()
 
 movieRouter.post("/:user_id", moviesController.create)
+movieRouter.get("/:id", moviesController.show)
+movieRouter.get("/", moviesController.index)
 
 module.exports = movieRouter
