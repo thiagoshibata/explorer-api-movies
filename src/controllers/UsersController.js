@@ -56,7 +56,7 @@ class UsersController {
         "You need to enter your old password to generate a new password"
       )
     }
-    console.log(old_password, user.password)
+
     if (password && old_password) {
       const checkOldPassword = await compare(old_password, user.password)
 
@@ -72,7 +72,7 @@ class UsersController {
         name: user.name,
         email: user.email,
         password: user.password,
-        updated_at: "DATATIME('NOW')",
+        updated_at: knex.fn.now(),
       })
       .where({ id })
 
