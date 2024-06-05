@@ -35,9 +35,9 @@ class UsersController {
   async update(req, res) {
     const { name, email, password, old_password } = req.body
 
-    const { id } = req.params
+    const user_id = req.user.id
 
-    const [user] = await knex("users").where({ id })
+    const [user] = await knex("users").where({ id: user_id })
 
     if (!user) {
       throw new AppError("User not found")
@@ -74,7 +74,7 @@ class UsersController {
         password: user.password,
         updated_at: knex.fn.now(),
       })
-      .where({ id })
+      .where({ id: user_id })
 
     return res.status(200).json(user)
   }
