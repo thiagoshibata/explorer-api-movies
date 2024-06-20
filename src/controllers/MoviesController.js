@@ -4,7 +4,7 @@ const AppError = require("../utils/AppError")
 class MoviesController {
   async create(req, res) {
     const { title, description, rating, tags } = req.body
-    const { user_id } = req.params
+    const user_id = req.user.id
 
     if (rating > 5 || rating < 1) {
       throw new AppError("Rating: 0 - 5")
@@ -26,8 +26,9 @@ class MoviesController {
 
     await knex("movie_tags").insert(tagsInsert)
 
-    return res.json(tagsInsert)
+    return res.json()
   }
+
   async show(req, res) {
     const { id } = req.params
 
@@ -39,8 +40,9 @@ class MoviesController {
     return res.json({ ...movie_notes, movie_tags })
   }
   async delete(req, res) {
-    const { id } = req.params
+    const { id } = req.user.id
 
+    confirm("Tem certeza que deseja excluir?")
     await knex("movie_notes").where({ id }).delete()
 
     return res.json()
